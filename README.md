@@ -9,4 +9,14 @@ New connection from 127.0.0.1:52185
 New connection from 127.0.0.1:52186
 New connection from 127.0.0.1:52187
 ``` 
-Each client can send messages to the server. When a client sends a message (by typing it) it will show up on the server terminal, and also on the client terminals themselves (each client get sent other client's messages). The terminal's notification of the messages also notify which client port it came from.s
+Each client can send messages to the server. When a client sends a message (by typing it) it will show up on the server terminal, and also on the client terminals themselves (each client get sent other client's messages). The terminal's notification of the messages also notify which client port it came from.
+
+## 2.2. Modifying the websocket port
+`src/bin/server.rs`
+![alt text](screenshots/8080serverdefined.png)
+`src/bin/client.rs`
+![alt text](screenshots/8080clientdefined.png)
+Result
+![alt text](screenshots/8080result.png)
+As seen above, changing the port to 8080 does not change the running result, it still functions the same as before.
+Both the client and server uses the same websocket protocol that is the `tokio_websockets` protocol. It ensures that the two connections matchup. The `tokio_websockets` crate provides an implementation of WebSocket functionality on top of Tokio, which is a popular asynchronous runtime for Rust.
