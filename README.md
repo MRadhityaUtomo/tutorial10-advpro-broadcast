@@ -20,3 +20,16 @@ Result
 ![alt text](screenshots/8080result.png)
 As seen above, changing the port to 8080 does not change the running result, it still functions the same as before.
 Both the client and server uses the same websocket protocol that is the `tokio_websockets` protocol. It ensures that the two connections matchup. The `tokio_websockets` crate provides an implementation of WebSocket functionality on top of Tokio, which is a popular asynchronous runtime for Rust.
+
+## 2.3. Small changes. Add some information to client
+`client.rs`
+![alt text](screenshots/informationclient.png)
+This loop concurrently listens for incoming messages from a WebSocket stream and input from the standard input, allowing the program to respond to both WebSocket messages and user input asynchronously.
+We put this text here as part of the logging or debugging mechanism to visually identify messages received from the server. By prefixing each message with `"Radhitya's Computer - From server: "`, it's easier to distinguish server messages from other types of messages, especially in scenarios where multiple sources may be sending messages.
+
+`server.rs`
+![alt text](screenshots/informationserver.png)
+This loop accepts incoming connections, spawns a new asynchronous task to handle each connection, and then repeats the process indefinitely. Each spawned task handles one connection, allowing the server to handle multiple concurrent connections efficiently. The server here will accept incoming connections and print the out the localhost and port along with it.
+
+Result
+![alt text](screenshots/informationresult.png)
